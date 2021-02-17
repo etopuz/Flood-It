@@ -6,12 +6,20 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Board Info")]
-    [SerializeField] private const int edge = 14;
-    [SerializeField] private Color currentColor;
+    [SerializeField] private int edge = 14;
+
+    [Header("Tile Lists")]
     [SerializeField] private Tile [] allTiles;
     [SerializeField] private List<Tile> occupiedTiles;
     [SerializeField] private List<Tile> occupiedEdgeTiles;
 
+    [Header("References")]
+    [SerializeField] private BoardOperations boardOperations;
+
+    private void Awake()
+    {
+        boardOperations = GetComponent<BoardOperations>();
+    }
 
     private void Start()
     {
@@ -20,23 +28,22 @@ public class PlayerController : MonoBehaviour
 
     public void Play(Color color)
     {
-       
-        
-    }
+        for(int i = 0; i < occupiedEdgeTiles.Count; i++)
+        {
 
-    private void ChangeEdges()
-    {
-    
-    }
+        }
 
-    private void ChangeOccupiedTilesColors(Color color)
-    {
-  
+        boardOperations.FloodOccupiedTiles(occupiedTiles, color);
+        boardOperations.UpdateEdges(occupiedEdgeTiles);
     }
 
     private void InitializeBoard()
     {
         allTiles = transform.gameObject.GetComponentsInChildren<Tile>();
-        BoardOperations.Initialize(allTiles);
+        boardOperations.Initialize(allTiles);
+
+        Tile firstTile = allTiles[0];
+        occupiedTiles.Add(firstTile);
+        occupiedEdgeTiles.Add(firstTile);
     }
 }

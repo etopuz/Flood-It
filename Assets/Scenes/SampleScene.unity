@@ -2471,7 +2471,7 @@ GameObject:
   - component: {fileID: 160230911}
   - component: {fileID: 160230910}
   m_Layer: 5
-  m_Name: GameCanvas
+  m_Name: Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15648,6 +15648,7 @@ GameObject:
   - component: {fileID: 1227026549}
   - component: {fileID: 1227026548}
   - component: {fileID: 1227026551}
+  - component: {fileID: 1227026552}
   m_Layer: 5
   m_Name: GameBoard
   m_TagString: GameBoard
@@ -15943,6 +15944,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   edge: 14
   currentColor: {r: 0, g: 0, b: 0, a: 0}
+  allTiles: []
+  occupiedTiles: []
+  occupiedEdgeTiles: []
+  boardOperations: {fileID: 0}
+--- !u!114 &1227026552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227026546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237f8111e06304749bd4850139731e6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1229020117 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3647538772731705263, guid: 31b715e115e4c6f47a670fdaf34a9885,

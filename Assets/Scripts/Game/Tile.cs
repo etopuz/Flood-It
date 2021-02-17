@@ -13,29 +13,29 @@ public class Tile : MonoBehaviour
     public Tile down;
     public Tile upper;
 
-    public static Color[] colours = new Color[6] {
+    public static Color[] colours = new Color[6] 
+    {
         Color.red,
         Color.blue,
         Color.magenta,
         Color.cyan,
         Color.green,
-        Color.yellow};
+        Color.yellow
+    };
 
-    private Color color;
+    public Color color;
     Image image;
-
-    public Color Color { get => color; set => color = value; }
 
     private void Awake()
     {
-        Color = colours[Random.Range(0, colours.Length)];
+        color = colours[Random.Range(0, colours.Length)];
         image = GetComponent<Image>();
-        image.color = Color;
+        image.color = color;
     }
 
     public void ChangeColor(Color color)
     {
-        Color = color;
-        image.color = Color;
+        this.color = color;
+        image.color = color;
     }
 }
