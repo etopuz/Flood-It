@@ -29,9 +29,13 @@ public class BoardOperations : MonoBehaviour
 
     public void UpdateEdges(List<Tile> occupiedEdgeTiles)
     {
-        foreach (Tile tile in occupiedEdgeTiles)
+        bool isEdge;
+        Tile tile;
+        for (int i = occupiedEdgeTiles.Count - 1; i >= 0; i--)
         {
-            bool isEdge = false;
+            tile = occupiedEdgeTiles[i];
+            isEdge = false;
+
 
             if (tile.right != null && tile.color != tile.right.color)
                 isEdge = true;
@@ -57,6 +61,18 @@ public class BoardOperations : MonoBehaviour
     }
 
 
+    public void CheckPossibleTiles(bool isColorChanged, Tile possibleTile, List<Tile> occupiedTiles, List<Tile> tempOccupiedEdgeTiles, Color color)
+    {
+        if (possibleTile.color == color && possibleTile.isOccupied == false)
+        {
+            isColorChanged = true;
+            possibleTile.isOccupied = true;
+            occupiedTiles.Add(possibleTile);
+            tempOccupiedEdgeTiles.Add(possibleTile);
+
+        }
+
+    }
 
 
 }

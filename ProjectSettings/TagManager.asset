@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - GameBoard
+  - Texts
   layers:
   - Default
   - TransparentFX
