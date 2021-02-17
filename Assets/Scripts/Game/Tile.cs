@@ -7,6 +7,12 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Tile : MonoBehaviour
 {
+
+    public Tile right;
+    public Tile left;
+    public Tile down;
+    public Tile upper;
+
     public static Color[] colours = new Color[6] {
         Color.red,
         Color.blue,

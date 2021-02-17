@@ -20,6 +20,6 @@ public class SetColor : MonoBehaviour
 
     void TaskOnClick()
     {
-        playerController.Game(buttonColor);
+        playerController.Play(buttonColor);
     }
 }
