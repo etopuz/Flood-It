@@ -33,8 +33,8 @@ public class HeaderRandomColor : MonoBehaviour
 
         else
         {
-            text.color = Color.Lerp(text.color, targetColor, Time.deltaTime * 1.25f);
-            timeLimit -= Time.deltaTime;
+            text.color = Color.Lerp(text.color, targetColor, Time.deltaTime * 1.50f);
+            timeLimit -= Time.deltaTime * 1.50f;
         }
     }
 }

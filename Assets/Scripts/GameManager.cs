@@ -30,11 +30,12 @@ public class GameManager : MonoBehaviour
     }
 
     [Header("Limit")]
-    private const int MAX_SCORE = 195;
+    public const int MAX_SCORE = 196;
+    public const int MAX_MOVE = 30;
 
     [Header("Game Info")]
     public static int score = 0;
-    public static int moves = 25;
+    public static int moves = MAX_MOVE;
     public static int win = 0;
     public static State state = State.Playing;
 
@@ -46,24 +47,27 @@ public class GameManager : MonoBehaviour
                 Lose();
             else
                 Win();
+
             return;
         }
 
         if (score >= MAX_SCORE)
+        {
             Win();
+        }
+            
+
     }
 
     private void Win()
     {
         win += 1;
         state = State.Win;
-        Debug.Log("You win");
     }
 
     private void Lose()
     {
         state = State.Lose;
-        Debug.Log("You lose");
     }
 
 }

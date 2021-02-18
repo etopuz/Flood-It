@@ -19,7 +19,7 @@ public class ResetGame : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
         GameManager.score = 0;
-        GameManager.moves = 25;
+        GameManager.moves = GameManager.MAX_MOVE;
         GameManager.state = GameManager.State.Playing;
     }
 }

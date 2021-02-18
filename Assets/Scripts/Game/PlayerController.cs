@@ -14,13 +14,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BoardOperations boardOperations;
     [SerializeField] private UpdateUI uI;
 
-    
+    public List<Tile[]> allTilesBackUp = new List<Tile[]>(3);
 
     private void Awake()
     {
         boardOperations = GetComponent<BoardOperations>();
         uI = GameObject.FindWithTag("UserPanel").GetComponent<UpdateUI>();
     }
+
+
 
     private void Start()
     {
@@ -38,28 +40,29 @@ public class PlayerController : MonoBehaviour
 
             if (currentTile.right != null)
             {
-                var v = boardOperations.CheckPossibleTiles(currentTile.right, occupiedTiles, occupiedEdgeTiles, color);
-                isColorChanged = v == true ? v : isColorChanged;
+                bool b = boardOperations.CheckPossibleTiles(currentTile.right, occupiedTiles, occupiedEdgeTiles, color);
+                isColorChanged = b == true ? b : isColorChanged;
             }
 
             if (currentTile.left != null)
             {
-                var v = boardOperations.CheckPossibleTiles(currentTile.left, occupiedTiles, occupiedEdgeTiles, color);
-                isColorChanged = v == true ? v : isColorChanged;
+                bool b = boardOperations.CheckPossibleTiles(currentTile.left, occupiedTiles, occupiedEdgeTiles, color);
+                isColorChanged = b == true ? b : isColorChanged;
             }
 
             if (currentTile.upper != null)
             {
-                var v = boardOperations.CheckPossibleTiles(currentTile.upper, occupiedTiles, occupiedEdgeTiles, color);
-                isColorChanged = v == true ? v : isColorChanged;
+                bool b = boardOperations.CheckPossibleTiles(currentTile.upper, occupiedTiles, occupiedEdgeTiles, color);
+                isColorChanged = b == true ? b : isColorChanged;
             }
 
             if (currentTile.down != null)
             {
-                var v = boardOperations.CheckPossibleTiles(currentTile.down, occupiedTiles, occupiedEdgeTiles, color);
-                isColorChanged = v == true ? v : isColorChanged;
+                bool b = boardOperations.CheckPossibleTiles(currentTile.down, occupiedTiles, occupiedEdgeTiles, color);
+                isColorChanged = b == true ? b : isColorChanged;
             }
         }
+
 
         if (isColorChanged)
         {
@@ -90,4 +93,5 @@ public class PlayerController : MonoBehaviour
         occupiedEdgeTiles.Add(firstTile);
         firstTile.isOccupied = true;
     }
+
 }
