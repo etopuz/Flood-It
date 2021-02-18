@@ -61,17 +61,16 @@ public class BoardOperations : MonoBehaviour
     }
 
 
-    public void CheckPossibleTiles(bool isColorChanged, Tile possibleTile, List<Tile> occupiedTiles, List<Tile> tempOccupiedEdgeTiles, Color color)
+    public bool CheckPossibleTiles(Tile possibleTile, List<Tile> occupiedTiles, List<Tile> tempOccupiedEdgeTiles, Color color)
     {
         if (possibleTile.color == color && possibleTile.isOccupied == false)
         {
-            isColorChanged = true;
             possibleTile.isOccupied = true;
             occupiedTiles.Add(possibleTile);
             tempOccupiedEdgeTiles.Add(possibleTile);
-
+            return true;
         }
-
+        return false;
     }
 
 

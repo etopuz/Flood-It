@@ -14,50 +14,71 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BoardOperations boardOperations;
     [SerializeField] private UpdateUI uI;
 
+    
+
     private void Awake()
     {
         boardOperations = GetComponent<BoardOperations>();
-        uI = GameObject.FindWithTag("Texts").GetComponent<UpdateUI>();
+        uI = GameObject.FindWithTag("UserPanel").GetComponent<UpdateUI>();
     }
 
     private void Start()
     {
         InitializeBoard();
-        uI.UpdateTexts(GameManager.score, GameManager.turnRemained);
+        uI.UpdateTexts();
     }
 
     public void Play(Color color)
     {
         Tile currentTile;
         bool isColorChanged = false;
-
         for (int i = 0; i < occupiedEdgeTiles.Count; i++)
         {
             currentTile = occupiedEdgeTiles[i];
 
             if (currentTile.right != null)
-                boardOperations.CheckPossibleTiles(isColorChanged, currentTile.right, occupiedTiles, occupiedEdgeTiles, color);
+            {
+                var v = boardOperations.CheckPossibleTiles(currentTile.right, occupiedTiles, occupiedEdgeTiles, color);
+                isColorChanged = v == true ? v : isColorChanged;
+            }
+
             if (currentTile.left != null)
-                boardOperations.CheckPossibleTiles(isColorChanged, currentTile.left, occupiedTiles, occupiedEdgeTiles, color);
+            {
+                var v = boardOperations.CheckPossibleTiles(currentTile.left, occupiedTiles, occupiedEdgeTiles, color);
+                isColorChanged = v == true ? v : isColorChanged;
+            }
+
             if (currentTile.upper != null)
-                boardOperations.CheckPossibleTiles(isColorChanged, currentTile.upper, occupiedTiles, occupiedEdgeTiles, color);
+            {
+                var v = boardOperations.CheckPossibleTiles(currentTile.upper, occupiedTiles, occupiedEdgeTiles, color);
+                isColorChanged = v == true ? v : isColorChanged;
+            }
+
             if (currentTile.down != null)
-                boardOperations.CheckPossibleTiles(isColorChanged, currentTile.down, occupiedTiles, occupiedEdgeTiles, color);
+            {
+                var v = boardOperations.CheckPossibleTiles(currentTile.down, occupiedTiles, occupiedEdgeTiles, color);
+                isColorChanged = v == true ? v : isColorChanged;
+            }
         }
 
-        boardOperations.FloodOccupiedTiles(occupiedTiles, color);
-        boardOperations.UpdateEdges(occupiedEdgeTiles);
-
-        UpdateGame();
-
+        if (isColorChanged)
+        {
+            boardOperations.FloodOccupiedTiles(occupiedTiles, color);
+            boardOperations.UpdateEdges(occupiedEdgeTiles);
+            UpdateGame();
+        }
     }
 
     private void UpdateGame()
     {
         GameManager.score = occupiedTiles.Count;
-        GameManager.turnRemained -= 1;
-        uI.UpdateTexts(GameManager.score, GameManager.turnRemained);
+        GameManager.moves -= 1;
         GameManager.Instance.CheckGame();
+
+        uI.UpdateTexts();
+        
+        if (GameManager.state != GameManager.State.Playing)
+            uI.GameOver();
     }
 
     private void InitializeBoard()

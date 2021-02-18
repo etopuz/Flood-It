@@ -22,17 +22,25 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    public enum State
+    {
+        Playing,
+        Win,
+        Lose
+    }
 
     [Header("Limit")]
     private const int MAX_SCORE = 195;
 
-    [Header("Score and Remained Turn")]
+    [Header("Game Info")]
     public static int score = 0;
-    public static int turnRemained = 25;
+    public static int moves = 25;
+    public static int win = 0;
+    public static State state = State.Playing;
 
     public void CheckGame()
     {
-        if (turnRemained == 0)
+        if (moves == 0)
         {
             if(score < MAX_SCORE)
                 Lose();
@@ -47,13 +55,14 @@ public class GameManager : MonoBehaviour
 
     private void Win()
     {
-        // TODO
+        win += 1;
+        state = State.Win;
         Debug.Log("You win");
     }
 
     private void Lose()
     {
-        // TODO
+        state = State.Lose;
         Debug.Log("You lose");
     }
 

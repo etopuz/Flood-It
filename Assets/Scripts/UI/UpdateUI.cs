@@ -4,20 +4,32 @@ using UnityEngine.UI;
 
 
 public class UpdateUI : MonoBehaviour
-{
-    [SerializeField] private Text score;
-    [SerializeField] private Text turn;
+{   
+    [Header("Game Info")]
+    [SerializeField] private Text moves = null;
+    [SerializeField] private Text score = null;
+    [SerializeField] private Text win = null;
 
-    private void Awake()
+    [Header("Game Over References")]
+    [SerializeField] private GameObject inputPanel = null;
+    [SerializeField] private Image gameOverImage = null;
+    [SerializeField] private Text gameOverText = null;
+
+    public void UpdateTexts()
     {
-        score = transform.GetChild(1).GetComponent<Text>();
-        turn = transform.GetChild(2).GetComponent<Text>();
+        score.text = string.Format("Score: {0:g}", GameManager.score).ToString();
+        moves.text = string.Format("Moves: {0:g}", GameManager.moves).ToString();
+        win.text = string.Format("Win: {0:g}", GameManager.win).ToString();
     }
 
-    public void UpdateTexts(int _score, int _turn)
+    public void GameOver()
     {
-        score.text = string.Format("Score: {0:g}",_score).ToString();
-        turn.text = string.Format("Turn: {0:g}/25", _turn).ToString();
+        inputPanel.SetActive(false);
+        gameOverImage.enabled = true;
+        gameOverText.enabled = true;
+        gameOverText.text = "Game Over! ";
+        gameOverText.text += GameManager.State.Win == GameManager.state ? "You Win." : "You Lose.";
+        gameOverText.text += "\nPress Restart Game For Continue Playing";
     }
 
 }

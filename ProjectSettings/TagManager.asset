@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameBoard
   - Texts
+  - UserPanel
   layers:
   - Default
   - TransparentFX
