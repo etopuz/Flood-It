@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Limit")]
     public const int MAX_SCORE = 196;
-    public const int MAX_MOVE = 30;
+    public const int MAX_MOVE = 25;
 
     [Header("Game Info")]
     public static int score = 0;
