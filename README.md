@@ -1,5 +1,6 @@
 # Flood-It
  Flood It Game Made With Unity
+ ![](https://media4.giphy.com/media/uvnAiHXMXRG9lqVjRB/giphy.gif)
  
 ### Release
 - [Final Version](https://github.com/etopuz/Flood-It/releases/tag/Final)
